@@ -1,0 +1,17 @@
+2025/06/18 11:15:37 [emerg] 4104#6820: cannot load certificate "C:\ngnix/conf/certs/devalentine.local.crt": BIO_new_file() failed (SSL: error:80000003:system library::No such process:calling fopen(C:\ngnix/conf/certs/devalentine.local.crt, r) error:10000080:BIO routines::no such file)
+2025/06/18 11:22:16 [emerg] 608#18028: cannot load certificate "C:\ngnix/conf/certs/devalentine.local.crt": BIO_new_file() failed (SSL: error:80000003:system library::No such process:calling fopen(C:\ngnix/conf/certs/devalentine.local.crt, r) error:10000080:BIO routines::no such file)
+2025/06/18 11:22:16 [emerg] 15936#5360: cannot load certificate "C:\ngnix/conf/certs/devalentine.local.crt": BIO_new_file() failed (SSL: error:80000003:system library::No such process:calling fopen(C:\ngnix/conf/certs/devalentine.local.crt, r) error:10000080:BIO routines::no such file)
+2025/06/18 11:26:21 [emerg] 18836#5980: could not build server_names_hash, you should increase server_names_hash_bucket_size: 32
+2025/06/18 11:26:21 [emerg] 18704#17716: could not build server_names_hash, you should increase server_names_hash_bucket_size: 32
+2025/06/18 11:26:39 [emerg] 3612#18528: could not build server_names_hash, you should increase server_names_hash_bucket_size: 32
+2025/06/18 11:28:32 [notice] 2964#17712: signal process started
+2025/06/18 11:31:29 [notice] 17484#19320: signal process started
+2025/06/18 11:41:46 [emerg] 18420#15444: cannot load certificate "C:\ngnix/conf/certs/dev.lo.pem": BIO_new_file() failed (SSL: error:80000003:system library::No such process:calling fopen(C:\ngnix/conf/certs/dev.lo.pem, r) error:10000080:BIO routines::no such file)
+2025/06/18 11:42:49 [emerg] 2660#1364: invalid number of arguments in "ssl_certificate" directive in C:\ngnix/conf/nginx.conf:58
+2025/06/18 11:43:39 [emerg] 17784#15440: cannot load certificate "C:\ngnix/conf/../certs/dev.lo.crt": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(C:\ngnix/conf/../certs/dev.lo.crt, r) error:10000080:BIO routines::no such file)
+2025/06/18 11:51:07 [emerg] 18704#4596: cannot load certificate "C:/ngnix/certs/dev.lo.crt": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(C:/ngnix/certs/dev.lo.crt, r) error:10000080:BIO routines::no such file)
+2025/06/18 12:01:26 [emerg] 18536#17956: unexpected "{" in C:\ngnix/conf/nginx.conf:6
+2025/06/18 12:04:39 [notice] 17040#18436: signal process started
+2025/06/18 15:53:05 [notice] 19524#13636: signal process started
+2025/06/18 15:56:43 [notice] 13440#23888: signal process started
+2025/06/18 15:56:47 [notice] 20892#2896: signal process started
