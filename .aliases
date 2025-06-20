@@ -1,0 +1,135 @@
+alias ls='ls --color=auto'
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+alias grep='grep --color=auto'
+alias cls='clear'
+
+# Git Shortcuts
+alias gs='git status'
+alias gi='git init'
+alias ga='git add'
+alias gc='git commit -m'
+alias gp='git push'
+alias gl='git pull'
+alias gco='git checkout'
+alias gb='git branch'
+alias gbm='git branch -M main'
+alias gm='git merge'
+alias gf='git fetch'
+alias grb='git rebase'
+alias gst='git stash'
+alias gd='git diff'
+alias glg='git log --graph --oneline --decorate'
+alias gar='git remote add origin'
+alias grr='git remote set-url'
+
+# NPM Shortcuts
+alias nps='npm start'
+alias npd='npm run dev'
+alias npt='npm test'
+alias npi='npm install'
+alias npb='npm run build'
+alias npl='npm run lint'
+
+# PNPM Shortcuts
+alias pns='pnpm start'
+alias pnsd='pnpm start:dev'
+alias pnd='pnpm dev'
+alias pnt='pnpm test'
+alias pni='pnpm install'
+alias pna='pnpm add'
+alias pnb='pnpm build'
+alias pnl='pnpm lint'
+alias pnx='pnpm dlx'
+alias pnup='pnpm up'
+alias png='pnpm add -g'
+
+#Docker Alias 
+
+alias d='docker'
+alias di='docker images'
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias dstart='docker start'
+alias dstop='docker stop'
+alias drm='docker rm'
+alias drmi='docker rmi'
+alias dexec='docker exec -it'
+alias dlogs='docker logs -f'
+alias dprune='docker system prune -a'
+
+#Docker Compose Alias
+
+alias dc='docker compose'
+alias dcbuild='docker compose build'
+alias dcup='docker compose up'
+alias dcupd='docker compose up -d'
+alias dcdown='docker compose down'
+alias dclog='docker compose logs'
+alias dclogf='docker compose logs -f'
+alias dce='docker compose exec'
+alias dcrun='docker compose run'
+alias dcps='docker compose ps'
+alias dcrestart='docker compose restart'
+alias dcpull='docker compose pull'
+alias dckill='docker compose kill'
+
+
+alias hi='helm install'                       # install chart
+alias hu='helm upgrade'                       # upgrade release
+alias hru='helm upgrade --install'            # upgrade or install if not exists
+alias hls='helm list'                         # list releases
+alias hlsn='helm list -n'                     # list releases in namespace
+alias hdel='helm uninstall'                   # uninstall release
+alias hdep='helm dependency update'           # update chart dependencies
+alias hval='helm show values'                 # show default chart values
+alias htpl='helm template'                    # render chart templates locally
+alias hhist='helm history'                    # release revision history
+alias hget='helm get all'                     # get full info of a release
+alias hlint='helm lint'                       # lint the chart
+
+alias k='kubectl'
+alias kg='kubectl get'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get svc'
+alias kgd='kubectl get deployments'
+alias kgn='kubectl get nodes'
+alias kgns='kubectl get namespaces'
+alias kd='kubectl describe'
+alias kdp='kubectl describe pod'
+alias kdd='kubectl describe deployment'
+alias kl='kubectl logs'
+alias klf='kubectl logs -f'
+alias ke='kubectl exec -it'
+alias kaf='kubectl apply -f'
+alias kdf='kubectl delete -f'
+alias kr='kubectl rollout restart'
+alias kctx='kubectl config use-context'
+alias kcn='kubectl config set-context'
+alias kcur='kubectl config current-context'
+alias kns='kubectl config set-context --current --namespace'
+alias kpf='kubectl port-forward'                   # Basic port-forward
+alias kpfp='kubectl port-forward pod'              # Port-forward specific pod
+alias kpfsvc='kubectl port-forward svc'            # Port-forward a service
+alias kgsct='kubectl get secret'                   # Get all secrets
+alias kgcm='kubectl get configmap'                 # Get all config maps
+alias kdsc='kubectl describe secret'               # Describe secret
+alias kdcmp='kubectl describe configmap'           # Describe configmap
+alias ktop='kubectl top pod'                       # View pod resource usage
+alias ktd='kubectl top deployment'                 # View deployment resource usage
+alias krun='kubectl run debug --rm -i --tty --image=alpine -- bash'  # Temporary debug pod
+alias kedit='kubectl edit'                         # Edit resources like pods, deployments, etc.
+alias kruncurl='kubectl run tmp-curl --rm -i --tty --image=curlimages/curl --'
+alias kcnl='kubectl config set-context --current --namespace='  # Quick change namespace
+alias knsc='kubectl create namespace'                          # Create a namespace
+alias kcp='kubectl cp'   # Copy files between pod and local
+
+# System Aliases
+alias update='sudo apt update && sudo apt upgrade -y'
+alias pcds='df -h'
+alias memory='free -m'
+
+alias runds='ollama run deepseek-r1'
+#Extras
+alias run='~/terminal-runner.sh'
