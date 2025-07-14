@@ -25,7 +25,7 @@ jobs:
         if: steps.commitcheck.outputs.commits == '0'
         run: |
           curl -X POST https://api.twilio.com/2010-04-01/Accounts/${{ secrets.TWILIO_ACCOUNT_SID }}/Messages.json \
-          --data-urlencode "To=whatsapp:+your_number" \
+          --data-urlencode "To=whatsapp:+254768133220" \
           --data-urlencode "From=whatsapp:+14155238886" \
           --data-urlencode "Body=🚨 No commits today! Push something or README will change in 10 minutes." \
           -u "${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}"
