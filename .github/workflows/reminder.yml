@@ -1,9 +1,9 @@
-name: Commit Reminder & README Bot
+name: Commit Reminder & Log Bot
 
 on:
   schedule:
-    - cron: '50 20 * * *'  # 11:50 PM EAT (UTC+3) = 8:50 PM UTC
-  workflow_dispatch:       # Allow manual run from GitHub UI
+    - cron: '50 20 * * *'  # 11:50 PM EAT (UTC+3)
+  workflow_dispatch:
 
 jobs:
   check-commit:
@@ -21,23 +21,25 @@ jobs:
           echo "Today's commits: $COMMITS"
           echo "commits=$COMMITS" >> $GITHUB_OUTPUT
 
-      - name: Send WhatsApp reminder if no commits
+      - name: Send WhatsApp roast if no commits
         if: steps.commitcheck.outputs.commits == '0'
         run: |
-          echo "📲 Sending WhatsApp reminder via Twilio..."
+          ROAST=$(shuf -n 1 .roasts.txt)
+          echo "🔥 Chosen roast: $ROAST"
           curl -X POST https://api.twilio.com/2010-04-01/Accounts/${{ secrets.TWILIO_ACCOUNT_SID }}/Messages.json \
           --data-urlencode "To=whatsapp:+254768133220" \
           --data-urlencode "From=whatsapp:+14155238886" \
-          --data-urlencode "Body=🚨 No commits today! Push something or the bot will change your README." \
-          -u "${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}" -v
+          --data-urlencode "Body=$ROAST" \
+          -u "${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}"
 
-      - name: Force README push if no commit
+      - name: Log commit inactivity
         if: steps.commitcheck.outputs.commits == '0'
         run: |
-          echo "🔁 Automated reminder at $(date)" >> README.md
+          mkdir -p .log
+          echo "📅 No commit on $(date -u) — reminder triggered." >> .log/commit-check.log
           git config user.email "bot@github.com"
           git config user.name "ReminderBot"
-          git add README.md
-          git commit -m "🤖 Auto update README: No commit on $(date -I)"
+          git add .log/commit-check.log
+          git commit -m "📝 Log: No commit on $(date -I)"
           git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
           git push origin HEAD:main
