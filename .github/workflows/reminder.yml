@@ -2,7 +2,7 @@ name: Commit Reminder & Log Bot
 
 on:
   schedule:
-    - cron: '50 20 * * *'  # 11:50 PM EAT (UTC+3)
+    - cron: '50 20 * * *'
   workflow_dispatch:
 
 jobs:
@@ -21,13 +21,16 @@ jobs:
           echo "Today's commits: $COMMITS"
           echo "commits=$COMMITS" >> $GITHUB_OUTPUT
 
-  
-      - name: Debug Token Info (Safe)
+      - name: Send WhatsApp roast if no commits
+        if: steps.commitcheck.outputs.commits == '0'
         run: |
-          echo "Repo: ${{ github.repository }}"
-          echo "Actor: ${{ github.actor }}"
-          echo "Token exists: ${{ secrets.PAT != '' }}"
-
+          ROAST=$(shuf -n 1 .roasts.txt)
+          echo "🔥 Chosen roast: $ROAST"
+          curl -X POST https://api.twilio.com/2010-04-01/Accounts/${{ secrets.TWILIO_ACCOUNT_SID }}/Messages.json \
+          --data-urlencode "To=whatsapp:+254768133220" \
+          --data-urlencode "From=whatsapp:+14155238886" \
+          --data-urlencode "Body=$ROAST" \
+          -u "${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}"
 
       - name: Commit and Push Log
         if: steps.commitcheck.outputs.commits == '0'
@@ -38,11 +41,7 @@ jobs:
           git config user.name "ReminderBot"
           git add .log/commit-check.log
           git commit -m "📝 Log: No commit on $(date -I)"
-      
-          # 🔥 Set the remote with PAT to override github-actions[bot]
           git remote remove origin
           git remote add origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
-      
-          # ✅ Push with PAT-authenticated remote
           git push origin HEAD:main
 
