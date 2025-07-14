@@ -29,7 +29,7 @@ jobs:
           echo "Token exists: ${{ secrets.PAT != '' }}"
 
 
-      - name: Log commit inactivity
+      - name: Commit and Push Log
         if: steps.commitcheck.outputs.commits == '0'
         run: |
           mkdir -p .log
@@ -38,5 +38,11 @@ jobs:
           git config user.name "ReminderBot"
           git add .log/commit-check.log
           git commit -m "📝 Log: No commit on $(date -I)"
-          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
+      
+          # 🔥 Set the remote with PAT to override github-actions[bot]
+          git remote remove origin
+          git remote add origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
+      
+          # ✅ Push with PAT-authenticated remote
           git push origin HEAD:main
+
