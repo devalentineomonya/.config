@@ -38,6 +38,4 @@ jobs:
           git config user.name "ReminderBot"
           git add README.md
           git commit -m "🤖 Auto update README: No commit on $(date -I)"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }} HEAD:main
