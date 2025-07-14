@@ -1,19 +1,19 @@
-# .github/workflows/reminder.yml
 name: Commit Reminder & README Bot
 
 on:
   schedule:
-    - cron: '50 20 * * *'  # 11:50 PM EAT = 8:50 PM UTC
-  workflow_dispatch:
+    - cron: '50 20 * * *'  # 11:50 PM EAT (UTC+3) = 8:50 PM UTC
+  workflow_dispatch:       # Allow manual run from GitHub UI
 
 jobs:
   check-commit:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Check for commits today
+      - name: Check for commits today (UTC)
         id: commitcheck
         run: |
           TODAY=$(date -u +%F)
@@ -24,11 +24,12 @@ jobs:
       - name: Send WhatsApp reminder if no commits
         if: steps.commitcheck.outputs.commits == '0'
         run: |
+          echo "📲 Sending WhatsApp reminder via Twilio..."
           curl -X POST https://api.twilio.com/2010-04-01/Accounts/${{ secrets.TWILIO_ACCOUNT_SID }}/Messages.json \
           --data-urlencode "To=whatsapp:+254768133220" \
           --data-urlencode "From=whatsapp:+14155238886" \
-          --data-urlencode "Body=🚨 No commits today! Push something or README will change in 10 minutes." \
-          -u "${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}"
+          --data-urlencode "Body=🚨 No commits today! Push something or the bot will change your README." \
+          -u "${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}" -v
 
       - name: Force README push if no commit
         if: steps.commitcheck.outputs.commits == '0'
@@ -38,4 +39,5 @@ jobs:
           git config user.name "ReminderBot"
           git add README.md
           git commit -m "🤖 Auto update README: No commit on $(date -I)"
-          git push https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }} HEAD:main
+          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
+          git push origin HEAD:main
