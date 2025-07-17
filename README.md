@@ -1,6 +1,6 @@
-# .config Repository
+# dotfiles Repository
 
-![.config Banner](https://placehold.co/1200x400/111827/FFFFFF?text=Productivity+Optimized+.config)
+![dotfiles Banner](https://placehold.co/1200x400/111827/FFFFFF?text=Productivity+Optimized+dotfiles)
 
 This repository contains my personalized configuration files for development tools, shell environments, and system utilities. Designed for cross-platform compatibility with a focus on developer productivity.
 
@@ -37,7 +37,7 @@ This repository contains my personalized configuration files for development too
 ## 📁 Repository Structure
 
 ```bash
-.config/
+dotfiles/
 ├── .aliases             # Shell aliases
 ├── .bashrc              # Bash configuration
 ├── .config/             # Application configurations
@@ -73,12 +73,12 @@ This repository contains my personalized configuration files for development too
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/devalentineomonya/.config.git ~/.config
+   git clone https://github.com/devalentineomonya/dotfiles.git ~/dotfiles
    ```
 
 2. **Run installation script**:
    ```bash
-   cd ~/.config/scripts
+   cd ~/dotfiles/scripts
    ./install.sh
    ```
 
@@ -91,16 +91,16 @@ This repository contains my personalized configuration files for development too
 
 ```bash
 # Clone the repository
-git clone https://github.com/devalentineomonya/.config.git ~/.config
+git clone https://github.com/devalentineomonya/dotfiles.git ~/dotfiles
 
 # Create symlinks to home directory
-ln -s ~/.config/.zshrc ~/.zshrc
-ln -s ~/.config/.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 # Add other configs as needed
 
 # Install Neovim configuration
-mkdir -p ~/.config
-ln -s ~/.config/nvim ~/.config/nvim
+mkdir -p ~/dotfiles
+ln -s ~/dotfiles/nvim ~/dotfiles/nvim
 ```
 
 ## 🔄 Update & Sync
@@ -108,7 +108,7 @@ ln -s ~/.config/nvim ~/.config/nvim
 To update your configurations with the latest changes:
 
 ```bash
-cd ~/.config
+cd ~/dotfiles
 git pull origin main
 
 # Re-run installation to apply updates
